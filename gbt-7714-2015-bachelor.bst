@@ -1,10 +1,10 @@
 %%
-%% This is file `gbt-7714-2015-numerical.bst',
+%% This is file `gbt-7714-2015-bachelor.bst',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% gbt-7714-2015.dtx  (with options: `numerical')
+%% gbt-7714-2015.dtx  (with options: `bachelor,numerical')
 %% 
 %% Copyright (C) 2016-2017 by Zeping Lee <zepinglee AT gmail.com>
 %% 
@@ -369,7 +369,6 @@ FUNCTION {format.names}
       t get.str.lang 'name.lang :=
       name.lang lang.en =
         { t #1 "{vv~}{ll}{ f{~}}" format.name$
-      "u" change.case$
           t #1 "{, jj}" format.name$ *
           't :=
         }
@@ -495,7 +494,7 @@ FUNCTION {set.mark}
 }
 
 FUNCTION {format.mark}
-{ "\allowbreak[" entry.mark * "]" * }
+{ "" }
 
 FUNCTION {format.full.names}
 {'s :=
@@ -923,24 +922,12 @@ FUNCTION {format.address.publisher}
     { address
       format.publisher empty$ not
         { ": " * format.publisher * }
-        { url empty$ doi empty$ and
-            { ": " * format.sine.nomine * }
-            'skip$
-          if$
-        }
+        'skip$
       if$
     }
-    { url empty$ doi empty$ and
-        { format.publisher empty$ not
-            { format.sine.loco ": " * format.publisher * }
-            { "" }
-          if$
-        }
-        { format.publisher empty$ not
-            { format.publisher }
-            { "" }
-          if$
-        }
+    { format.publisher empty$ not
+        { format.publisher }
+        { "" }
       if$
     }
   if$
@@ -965,6 +952,10 @@ FUNCTION {format.journal.number}
 
 FUNCTION {format.journal}
 { journal
+  is.in.chinese not
+    { "\textit{" swap$ * "}" * }
+    'skip$
+  if$
 }
 
 FUNCTION {format.periodical.year.volume.number}

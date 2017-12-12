@@ -50,6 +50,7 @@ which was designed for use with the `natbib.sty' package.
     \file{gbt-7714-2015.sty}{\from{\jobname.dtx}{package}}
     \file{gbt-7714-2015-author-year.bst}{\from{\jobname.dtx}{authoryear}}
     \file{gbt-7714-2015-numerical.bst}{\from{\jobname.dtx}{numerical}}
+    \file{gbt-7714-2015-bachelor.bst}{\from{\jobname.dtx}{bachelor,numerical}}
 }
 \Msg{* Happy TeXing!}
 \endbatchfile
@@ -417,7 +418,7 @@ which was designed for use with the `natbib.sty' package.
 % \subsection{Fields and entry strings}
 %
 %    \begin{macrocode}
-%<*authoryear|numerical>
+%<*authoryear|numerical|bachelor>
 ENTRY
   { address
     author
@@ -1042,10 +1043,23 @@ FUNCTION {is.in.chinese}
 { entry.lang lang.zh =
 }
 
+%    \end{macrocode}
+%
+% USTC requires multiple language support of "et al".
+%
+%    \begin{macrocode}
 FUNCTION {format.et.al}
 { is.in.chinese
     { "等"}
-    { "et~al." }
+    { lang.ja lang =
+        { "他"}
+        { lang.ru lang =
+            { "идр" }
+            { "et~al." }
+          if$
+        }
+      if$
+    }
   if$
 }
 
@@ -1058,6 +1072,11 @@ FUNCTION {format.anonymous}
 
 INTEGERS { nameptr namesleft numnames name.lang}
 
+%    \end{macrocode}
+%
+% USTC requires no upper case of author names for undergraduates.
+%
+%    \begin{macrocode}
 FUNCTION {format.names}
 { 's :=
   #1 'nameptr :=
@@ -1067,7 +1086,10 @@ FUNCTION {format.names}
     { s nameptr "{vv~}{ll}{, jj}{, ff}" format.name$ 't :=
       t get.str.lang 'name.lang :=
       name.lang lang.en =
-        { t #1 "{vv~}{ll}{ f{~}}" format.name$ "u" change.case$
+        { t #1 "{vv~}{ll}{ f{~}}" format.name$
+%<*!bachelor>
+      "u" change.case$
+%</!bachelor>
           t #1 "{, jj}" format.name$ *
           't :=
         }
@@ -1211,8 +1233,18 @@ FUNCTION {set.mark}
   if$
 }
 
+%    \end{macrocode}
+%
+% USTC requires no mark for undergraduates.
+%
+%    \begin{macrocode}
 FUNCTION {format.mark}
+%<*bachelor>
+{ "" }
+%</bachelor>
+%<*!bachelor>
 { "\allowbreak[" entry.mark * "]" * }
+%</!bachelor>
 
 FUNCTION {format.full.names}
 {'s :=
@@ -1763,7 +1795,30 @@ FUNCTION {format.sine.loco.sine.nomine}
   if$
 }
 
+%    \end{macrocode}
+%
+% USTC requires no S.l. or s.n. for undergraduates and no S.l.:s.n. for
+% graduates.
+%
+%    \begin{macrocode}
 FUNCTION {format.address.publisher}
+%<*bachelor>
+{ address empty$ not
+    { address
+      format.publisher empty$ not
+        { ": " * format.publisher * }
+        'skip$
+      if$
+    }
+    { format.publisher empty$ not
+        { format.publisher }
+        { "" }
+      if$
+    }
+  if$
+}
+%</bachelor>
+%<*!bachelor>
 { address empty$ not
     { address
       format.publisher empty$ not
@@ -1778,7 +1833,7 @@ FUNCTION {format.address.publisher}
     { url empty$ doi empty$ and
         { format.publisher empty$ not
             { format.sine.loco ": " * format.publisher * }
-            { format.sine.loco.sine.nomine }
+            { "" }
           if$
         }
         { format.publisher empty$ not
@@ -1790,6 +1845,7 @@ FUNCTION {format.address.publisher}
     }
   if$
 }
+%</!bachelor>
 
 %    \end{macrocode}
 %
@@ -1812,6 +1868,21 @@ FUNCTION {format.journal.number}
     { "\penalty0 (" number * ")" * }
     { "" }
   if$
+}
+
+%    \end{macrocode}
+%
+% USTC requires italic titles for journals in foriegn languages.
+%
+%    \begin{macrocode}
+FUNCTION {format.journal}
+{ journal
+%<*bachelor>
+  is.in.chinese not
+    { "\textit{" swap$ * "}" * }
+    'skip$
+  if$
+%</bachelor>
 }
 
 %    \end{macrocode}
@@ -2089,6 +2160,8 @@ FUNCTION {format.incoll.inproc.crossref}
 % The other entry functions are all quite similar, so no "comment version"
 % will be given for them.
 %
+% USTC requires period instead of a comma between author and year.
+%
 % \subsection{专著}
 %
 %    \begin{macrocode}
@@ -2109,6 +2182,7 @@ FUNCTION {monograph}
   if$
   output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -2184,6 +2258,7 @@ FUNCTION {periodical}
   format.authors "author" output.check
   author format.key output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -2213,6 +2288,7 @@ FUNCTION {article.in.journal}
   format.authors "author" output.check
   author format.key output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -2220,7 +2296,7 @@ FUNCTION {article.in.journal}
   "J" set.mark
   format.mark "" output.after
   new.block
-  journal "journal" output.check
+  format.journal "journal" output.check
 %<*numerical>
   format.date "year" output.check
 %</numerical>
@@ -2246,6 +2322,7 @@ FUNCTION {patent}
   format.authors output
   author format.key output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -2275,6 +2352,7 @@ FUNCTION {online}
   format.authors output
   author format.key output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -3053,7 +3131,7 @@ FUNCTION {end.bib}
 }
 
 EXECUTE {end.bib}
-%</authoryear|numerical>
+%</authoryear|numerical|bachelor>
 %    \end{macrocode}
 %
 % \Finale

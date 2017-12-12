@@ -339,7 +339,15 @@ FUNCTION {is.in.chinese}
 FUNCTION {format.et.al}
 { is.in.chinese
     { "等"}
-    { "et~al." }
+    { lang.ja lang =
+        { "他"}
+        { lang.ru lang =
+            { "идр" }
+            { "et~al." }
+          if$
+        }
+      if$
+    }
   if$
 }
 
@@ -361,7 +369,8 @@ FUNCTION {format.names}
     { s nameptr "{vv~}{ll}{, jj}{, ff}" format.name$ 't :=
       t get.str.lang 'name.lang :=
       name.lang lang.en =
-        { t #1 "{vv~}{ll}{ f{~}}" format.name$ "u" change.case$
+        { t #1 "{vv~}{ll}{ f{~}}" format.name$
+      "u" change.case$
           t #1 "{, jj}" format.name$ *
           't :=
         }
@@ -925,7 +934,7 @@ FUNCTION {format.address.publisher}
     { url empty$ doi empty$ and
         { format.publisher empty$ not
             { format.sine.loco ": " * format.publisher * }
-            { format.sine.loco.sine.nomine }
+            { "" }
           if$
         }
         { format.publisher empty$ not
@@ -953,6 +962,10 @@ FUNCTION {format.journal.number}
     { "\penalty0 (" number * ")" * }
     { "" }
   if$
+}
+
+FUNCTION {format.journal}
+{ journal
 }
 
 FUNCTION {format.periodical.year.volume.number}
@@ -1090,6 +1103,7 @@ FUNCTION {monograph}
     }
   if$
   output
+  new.block
   format.year "year" output.check
   new.block
   format.series.vol.num.title "title" output.check
@@ -1138,6 +1152,7 @@ FUNCTION {periodical}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
+  new.block
   format.year "year" output.check
   new.block
   format.title "title" output.check
@@ -1157,13 +1172,14 @@ FUNCTION {article.in.journal}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
+  new.block
   format.year "year" output.check
   new.block
   format.title "title" output.check
   "J" set.mark
   format.mark "" output.after
   new.block
-  journal "journal" output.check
+  format.journal "journal" output.check
   volume output
   format.journal.number "" output.after
   format.pages punct.colon output.after
@@ -1178,6 +1194,7 @@ FUNCTION {patent}
 { output.bibitem
   format.authors output
   author format.key output
+  new.block
   format.year "year" output.check
   new.block
   format.title
@@ -1200,6 +1217,7 @@ FUNCTION {online}
 { output.bibitem
   format.authors output
   author format.key output
+  new.block
   format.year "year" output.check
   new.block
   format.series.vol.num.title "title" output.check

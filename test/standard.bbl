@@ -34,6 +34,149 @@ ONE A, TWO A, THREE A.
 \newblock \doi{doi}.
 
 \end{thebibliography}
+\begin{thebibliography}{12}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{#1}
+\providecommand{\href}[2]{\url{#2}}
+\providecommand{\doi}[1]{DOI: \href{http://dx.doi.org/#1}{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax\relax\else
+  \urlstyle{same}\fi
+
+\bibitem[孙立广(2016)]{slg}
+孙立广.
+\newblock 顶级期刊论文摘要汇编（1999--2010）\allowbreak[G].
+\newblock 合肥: 中国科学技术大学出版社, 2016: 222.
+
+\bibitem[李泳池(2016)]{lyc}
+李泳池.
+\newblock 张量初步和近代连续介质力学概论\allowbreak[M].
+\newblock 2版.
+\newblock 合肥: 中国科学技术大学出版社, 2016: 61.
+
+\bibitem[刘景双(2014)]{ljs}
+刘景双.
+\newblock
+  湿地生态系统碳、氮、硫、磷生物地球化学过程\allowbreak[M].
+\newblock 合肥: 中国科学技术大学出版社, 2014.
+
+\bibitem[程根伟(1999)]{cgw}
+程根伟.
+\newblock
+  1998年长江洪水的成因与减灾对策\allowbreak[M]//\allowbreak{}许厚泽,
+  赵其国.
+\newblock 长江流域洪涝灾害与科技对策.
+\newblock 北京: 科学出版社, 1999: 26--32.
+
+\bibitem[陈晋镳\ 等(1980)陈晋镳, 张惠民, 朱士兴, 赵震, and
+  王振刚]{cjb}
+陈晋镳, 张惠民, 朱士兴, 等.
+\newblock
+  蓟县震旦亚界研究\allowbreak[M]//\allowbreak{}中国地质科学院天津地质矿产研究所.
+\newblock 中国震旦亚界.
+\newblock 天津: 天津科学技术出版社, 1980: 56--114.
+
+\bibitem[孔庆勇\ 等(2015)孔庆勇, 郭红健, and 孔庆和]{kqy}
+孔庆勇, 郭红健, 孔庆和.
+\newblock
+  我国科技期刊的金字塔分层模型及发展路径初探\allowbreak[J].
+\newblock 中国科技期刊研究, 2015, 26\penalty0 (10): 1100--1103.
+
+\bibitem[杨洪升(2013)]{yhs}
+杨洪升.
+\newblock 四库馆私家抄校书考略\allowbreak[J].
+\newblock 文献, 2013\penalty0 (1): 56--75.
+
+\bibitem[于潇\ 等(2012)于潇, 刘义, 柴跃廷, et~al.]{yx}
+于潇, 刘义, 柴跃廷, 等.
+\newblock
+  互联网药品可信交易环境中主体资质审核备案模式\allowbreak[J].
+\newblock 清华大学学报(自然科学版), 2012, 52\penalty0 (11):
+  1518--1521.
+
+\bibitem[丁文详(2000)]{dwx}
+丁文详.
+\newblock 数字革命与竞争国际化\allowbreak[N].
+\newblock 中国青年报, 2000-11-20\penalty0 (15).
+
+\bibitem[姜锡洲(1989)]{jxz}
+姜锡洲.
+\newblock
+  一种温热外敷药制备方案：中国，88105607.3\allowbreak[P].
+\newblock 1989-07-26.
+
+\bibitem[万锦坤(1996)]{wjk}
+万锦坤.
+\newblock
+  中国大学学报论文文摘（1983--1993）（英文版）\allowbreak[DB/CD].
+\newblock 北京: 中国大百科全书出版社, 1996.
+
+\bibitem[孙玉文(2000)]{syw}
+孙玉文.
+\newblock 汉语变调构词研究\allowbreak[D].
+\newblock 北京: 北京大学, 2000.
+
+\end{thebibliography}
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{#1}
+\providecommand{\href}[2]{\url{#2}}
+\providecommand{\doi}[1]{DOI: \href{http://dx.doi.org/#1}{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax\relax\else
+  \urlstyle{same}\fi
+
+\bibitem[尼葛洛庞帝(1996)]{nglpd}
+尼葛洛庞帝.
+\newblock 1996.
+\newblock 数字化生存\allowbreak[M].
+\newblock 胡泳, 范海燕, 译.
+\newblock 海口: 海南出版社.
+
+\bibitem[杨宗英(1996)]{yzy}
+杨宗英.
+\newblock 1996.
+\newblock 电子图书馆的现实模型\allowbreak[J].
+\newblock 中国图书馆学报\penalty0 (2): 24--29.
+
+\bibitem[刘斌(2014)]{lb}
+刘斌.
+\newblock 2014.
+\newblock 力学\allowbreak[M].
+\newblock 合肥: 中国科学技术大学出版社.
+
+\bibitem[Baker\ et~al.(1995)Baker and Jackson]{baker}
+BAKER S~K, JACKSON M~E.
+\newblock 1995.
+\newblock The future of resource sharing\allowbreak[M].
+\newblock New York: The Haworth Press.
+
+\end{thebibliography}
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{#1}
+\providecommand{\href}[2]{\url{#2}}
+\providecommand{\doi}[1]{DOI: \href{http://dx.doi.org/#1}{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax\relax\else
+  \urlstyle{same}\fi
+
+\bibitem[文富\ 等(2000)文富 and 顾丽梅]{wf}
+文富, 顾丽梅.
+\newblock 网络时代经济发展战略特征.
+\newblock 学术研究, 2000, 21\penalty0 (4): 35--40.
+
+\bibitem[肖度\ 等(2000)肖度 et~al.]{xd}
+肖度, 等.
+\newblock 知识时代的企业合作经营.
+\newblock 北京: 北京大学出版社, 2000: 67--69.
+
+\bibitem[{The White House}(1993)]{twh}
+{The White House}.
+\newblock \textit{Technology for Economic Growth}, 1993.
+
+\bibitem[Hutson(1992)]{huston}
+Hutson J~M.
+\newblock \textit{J. Phys. Chem.}, 1992, 96: 4237.
+
+\end{thebibliography}
 \begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{#1}
@@ -461,34 +604,40 @@ DOWLER L.
   \urlstyle{same}\fi
 
 \bibitem[尼葛洛庞帝(1996)]{nglpd}
-尼葛洛庞帝, 1996.
+尼葛洛庞帝.
+\newblock 1996.
 \newblock 数字化生存\allowbreak[M].
 \newblock 胡泳, 范海燕, 译.
 \newblock 海口: 海南出版社.
 
 \bibitem[汪冰(1997)]{wb}
-汪冰, 1997.
+汪冰.
+\newblock 1997.
 \newblock 电子图书馆理论与实践研究\allowbreak[M].
 \newblock 北京: 北京图书馆出版社: 16.
 
 \bibitem[杨宗英(1996)]{yzy}
-杨宗英, 1996.
+杨宗英.
+\newblock 1996.
 \newblock 电子图书馆的现实模型\allowbreak[J].
 \newblock 中国图书馆学报\penalty0 (2): 24--29.
 
 \bibitem[Baker\ et~al.(1995)Baker and Jackson]{baker}
-BAKER S~K, JACKSON M~E, 1995.
+BAKER S~K, JACKSON M~E.
+\newblock 1995.
 \newblock The future of resource sharing\allowbreak[M].
 \newblock New York: The Haworth Press.
 
 \bibitem[Chernik(1982)]{chernik}
-CHERNIK B~E, 1982.
+CHERNIK B~E.
+\newblock 1982.
 \newblock Introduction to library services for library
   technicians\allowbreak[M].
 \newblock Littleton, Colo.: Libraries Unlimited, Inc.
 
 \bibitem[Dowler(1995)]{dowler}
-DOWLER L, 1995.
+DOWLER L.
+\newblock 1995.
 \newblock The research university’s dilemma: resource sharing and research in
   a transinstitutional environment\allowbreak[J].
 \newblock Journal of library administration, 21\penalty0 (1/2): 5--26.
@@ -536,7 +685,8 @@ MORRI I.
   \urlstyle{same}\fi
 
 \bibitem[刘彻东(1998)]{lcd}
-刘彻东, 1998.
+刘彻东.
+\newblock 1998.
 \newblock 中国的青年刊物:个性特色为本仁\allowbreak[J].
 \newblock 中国出版\penalty0 (5): 38--39.
 
@@ -556,7 +706,8 @@ MORRI I.
 \newblock 北京: 中国科学技术期刊编辑学会学术委员会: 33--34.
 
 \bibitem[中国社会科学院语言研究所词典编辑室(1996)]{zgkxyyyyjscdbjs}
-中国社会科学院语言研究所词典编辑室, 1996.
+中国社会科学院语言研究所词典编辑室.
+\newblock 1996.
 \newblock 现代汉语词典\allowbreak[M].
 \newblock 修订本.
 \newblock 北京: 商务印书馆.
@@ -736,7 +887,7 @@ BABU B~V, NAGAR A~K, DEEP K, et~al.
 CALKIN D, AGER A, THOMPSON M.
 \newblock A comparative risk assessment framework for wildland fire management:
   the 2010 cohesive strategy science report: {RMRS-GTR-262}\allowbreak[R].
-\newblock [S.l.: s.n.], 2011: 8--9.
+\newblock 2011: 8--9.
 
 \bibitem[{U.S. Department of Transportation Federal Highway
   Administration}(1990)]{udtfha}

@@ -2,7 +2,7 @@
 
 NAME = gbt-7714-2015
 PKGFILES = $(NAME).sty
-BSTFILES = $(NAME)-numerical.bst $(NAME)-author-year.bst
+BSTFILES = $(NAME)-numerical.bst $(NAME)-author-year.bst $(NAME)-bachelor.bst
 TEST_DIR = test
 
 SHELL = bash
