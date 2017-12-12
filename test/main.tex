@@ -5,6 +5,12 @@
 \usepackage[numbers,sectionbib]{gbt-7714-2015}
 \usepackage[sectionbib]{chapterbib}
 
+\makeatletter
+\def\thuthesis{\textsc{Thu}\-\textsc{Thesis}}
+\def\thumasterbib{硕士学位论文}
+\def\thuphdbib{博士学位论文}
+\makeatother
+
 \begin{document}
 
 \title{GB/T 7714-2015 参考文献著录规则测试文档}
@@ -15,6 +21,9 @@
 \tableofcontents
 
 \include{intro}
+
+\include{thu.1}
+\include{thu.2}
 
 \include{4.1}
 \include{4.2}

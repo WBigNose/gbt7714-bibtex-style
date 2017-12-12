@@ -107,6 +107,24 @@ FUNCTION {punct.space}
 { " "
 }
 
+FUNCTION {not}
+{   { #0 }
+    { #1 }
+  if$
+}
+
+FUNCTION {and}
+{   'skip$
+    { pop$ #0 }
+  if$
+}
+
+FUNCTION {or}
+{   { pop$ #1 }
+    'skip$
+  if$
+}
+
 FUNCTION {output.nonnull}
 { 's :=
   output.state mid.sentence =
@@ -178,7 +196,13 @@ FUNCTION {output.check}
 }
 
 FUNCTION {fin.entry}
-{ add.period$
+{ type$ "book" =
+  type$ "inbook" = or
+  type$ "incollection" = or
+  type$ "collection" = or
+    'skip$
+    'add.period$
+  if$
   write$
   newline$
 }
@@ -213,24 +237,6 @@ FUNCTION {new.slash}
 { output.state before.all =
     'skip$
     { after.slash 'output.state := }
-  if$
-}
-
-FUNCTION {not}
-{   { #0 }
-    { #1 }
-  if$
-}
-
-FUNCTION {and}
-{   'skip$
-    { pop$ #0 }
-  if$
-}
-
-FUNCTION {or}
-{   { pop$ #1 }
-    'skip$
   if$
 }
 
@@ -360,10 +366,7 @@ FUNCTION {format.names}
     { s nameptr "{vv~}{ll}{, jj}{, ff}" format.name$ 't :=
       t get.str.lang 'name.lang :=
       name.lang lang.en =
-        { t #1 "{vv~}{ll}{ f{~}}" format.name$ "u" change.case$
-          t #1 "{, jj}" format.name$ *
-          't :=
-        }
+        { t #1 "{vv~}{ll}{ f{~}}{, jj}" format.name$ 't := }
         { t #1 "{ll}{ff}" format.name$ 't := }
       if$
       nameptr #1 >
@@ -1269,7 +1272,11 @@ FUNCTION {map}
 }
 
 FUNCTION {mastersthesis}
-{ "D" set.mark
+{ is.in.chinese
+    { "\thumasterbib{}" }
+    { "D" }
+  if$
+ set.mark
   monograph
 }
 
@@ -1278,7 +1285,14 @@ FUNCTION {newspaper}
   article.in.journal
 }
 
-FUNCTION {phdthesis} { mastersthesis }
+FUNCTION {phdthesis}
+{ is.in.chinese
+    { "\thuphdbib{}" }
+    { "D" }
+  if$
+ set.mark
+  monograph
+}
 
 FUNCTION {proceedings}
 { "C" set.mark

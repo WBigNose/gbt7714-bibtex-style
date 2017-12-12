@@ -677,6 +677,32 @@ FUNCTION {punct.space}
 { " "
 }
 
+%    \end{macrocode}
+%
+% These three functions pop one or two (integer) arguments from the stack
+% and push a single one, either 0 or 1.
+% The |'skip$| in the `and' and `or' functions are used because
+% the corresponding |if$| would be idempotent
+%
+%    \begin{macrocode}
+FUNCTION {not}
+{   { #0 }
+    { #1 }
+  if$
+}
+
+FUNCTION {and}
+{   'skip$
+    { pop$ #0 }
+  if$
+}
+
+FUNCTION {or}
+{   { pop$ #1 }
+    'skip$
+  if$
+}
+
 FUNCTION {output.nonnull}
 { 's :=
   output.state mid.sentence =
@@ -751,9 +777,17 @@ FUNCTION {output.check}
 %
 % This function finishes all entries.
 %
+% Tsinghua requires no period at the end of book-like entries.
+%
 %    \begin{macrocode}
 FUNCTION {fin.entry}
-{ add.period$
+{ type$ "book" =
+  type$ "inbook" = or
+  type$ "incollection" = or
+  type$ "collection" = or
+    'skip$
+    'add.period$
+  if$
   write$
   newline$
 }
@@ -788,32 +822,6 @@ FUNCTION {new.slash}
 { output.state before.all =
     'skip$
     { after.slash 'output.state := }
-  if$
-}
-
-%    \end{macrocode}
-%
-% These three functions pop one or two (integer) arguments from the stack
-% and push a single one, either 0 or 1.
-% The |'skip$| in the `and' and `or' functions are used because
-% the corresponding |if$| would be idempotent
-%
-%    \begin{macrocode}
-FUNCTION {not}
-{   { #0 }
-    { #1 }
-  if$
-}
-
-FUNCTION {and}
-{   'skip$
-    { pop$ #0 }
-  if$
-}
-
-FUNCTION {or}
-{   { pop$ #1 }
-    'skip$
   if$
 }
 
@@ -1058,6 +1066,11 @@ FUNCTION {format.anonymous}
 
 INTEGERS { nameptr namesleft numnames name.lang}
 
+%    \end{macrocode}
+%
+% Tsinghua requires no upper case names.
+%
+%    \begin{macrocode}
 FUNCTION {format.names}
 { 's :=
   #1 'nameptr :=
@@ -1067,10 +1080,7 @@ FUNCTION {format.names}
     { s nameptr "{vv~}{ll}{, jj}{, ff}" format.name$ 't :=
       t get.str.lang 'name.lang :=
       name.lang lang.en =
-        { t #1 "{vv~}{ll}{ f{~}}" format.name$ "u" change.case$
-          t #1 "{, jj}" format.name$ *
-          't :=
-        }
+        { t #1 "{vv~}{ll}{ f{~}}{, jj}" format.name$ 't := }
         { t #1 "{ll}{ff}" format.name$ 't := }
       if$
       nameptr #1 >
@@ -2089,6 +2099,8 @@ FUNCTION {format.incoll.inproc.crossref}
 % The other entry functions are all quite similar, so no "comment version"
 % will be given for them.
 %
+% Tsinghua requires a period instead a comma between author and year.
+%
 % \subsection{专著}
 %
 %    \begin{macrocode}
@@ -2109,6 +2121,7 @@ FUNCTION {monograph}
   if$
   output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -2148,6 +2161,7 @@ FUNCTION {incollection}
   format.authors "author" output.check
   author format.key output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -2184,6 +2198,7 @@ FUNCTION {periodical}
   format.authors "author" output.check
   author format.key output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -2213,6 +2228,7 @@ FUNCTION {article.in.journal}
   format.authors "author" output.check
   author format.key output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -2246,6 +2262,7 @@ FUNCTION {patent}
   format.authors output
   author format.key output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -2275,6 +2292,7 @@ FUNCTION {online}
   format.authors output
   author format.key output
 %<*authoryear>
+  new.block
   format.year "year" output.check
 %</authoryear>
   new.block
@@ -2392,9 +2410,15 @@ FUNCTION {map}
 %       Required: author, title, school, year
 %       Optional: type, address, month, note
 %
+% Tsinghua requires a special mark for entry type.
+%
 %    \begin{macrocode}
 FUNCTION {mastersthesis}
-{ "D" set.mark
+{ is.in.chinese
+    { "\thumasterbib{}" }
+    { "D" }
+  if$
+ set.mark
   monograph
 }
 
@@ -2410,7 +2434,14 @@ FUNCTION {newspaper}
 %       Optional: type, address, month, note
 %
 %    \begin{macrocode}
-FUNCTION {phdthesis} { mastersthesis }
+FUNCTION {phdthesis}
+{ is.in.chinese
+    { "\thuphdbib{}" }
+    { "D" }
+  if$
+ set.mark
+  monograph
+}
 
 %    \end{macrocode}
 %
